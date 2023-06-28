@@ -2,16 +2,18 @@ version: 0.1
 
 phases:
   install:
-    runtime-versions:
-      java: corretto8
+#    runtime-versions:
+#      java: corretto8
+    commands:
+      - apt-get install -y maven
 
   build:
     commands:
-      - mvn clean install --quiet
+      - mvn clean install
 
 artifacts:
   discard-paths: yes  # yamllint disable-line rule:truthy
   files:
-    - target/*
+    - target/aws-test-app-0.0.1-SNAPSHOT.jar
     - scripts/*
     - appspec.yml
