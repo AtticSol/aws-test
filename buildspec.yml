@@ -2,15 +2,19 @@ version: 0.1
 
 phases:
   install:
-#    runtime-versions:
-#      java: corretto8
+    runtime-versions:
+      java: corretto11
+  pre_build:
     commands:
-      - apt-get install -y maven
-
+      - echo Nothing to do in the pre_build phase...
   build:
     commands:
-      - mvn clean install
-
+      - echo Build started on `date`
+      - mvn install
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      
 artifacts:
   discard-paths: yes  # yamllint disable-line rule:truthy
   files:
