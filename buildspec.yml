@@ -10,15 +10,18 @@ phases:
   build:
     commands:
       - echo Build started on `date`
-      - mvn clean package
+      # - mvn clean package
   post_build:
     commands:
       - echo Build completed on `date`
+      - mvn package
+      - mv target/aws-test-app-0.0.1-SNAPSHOT.jar aws-test-app-0.0.1-SNAPSHOT.jar
 
       
 artifacts:
-  discard-paths: yes  # yamllint disable-line rule:truthy
+  # discard-paths: yes  # yamllint disable-line rule:truthy
   files:
-    - target/aws-test-app-0.0.1-SNAPSHOT.jar
-    - scripts/*
+    - aws-test-app-0.0.1-SNAPSHOT.jar
+    # - scripts/*
+    - .ebextensions/**/*
     - appspec.yml
